@@ -1,11 +1,15 @@
 Blog::Application.routes.draw do
   
+  resources :contacts
   devise_for :users 
   
-  match '/auth/:provider/callback', to: 'authentications#create', via: :all
+  match 'callback/:provider', to: 'authentications#create', via: :all
   
   resources :posts do
+	  get 'search', on: :collection
 	  resources :comments
+	  
+  resources :users
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

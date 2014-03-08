@@ -1,0 +1,52 @@
+<h1>Contacts</h1>
+
+<%= form_for :user, :url => contacts_path do |f| %>
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited
+      this contact from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>  
+
+<p>
+	<%= f.label :name %><br>
+	<%= f.text_field :name %><br>
+</p>
+
+<p>
+	<%= f.label :phone %><br>
+	<%= f.phone_field :phone %><br>
+</p>
+
+<p>
+	<%= f.label :dob %><br>
+	<%= f.date_select :dob, {start_year: 1980} %><br>
+</p>
+
+<p>
+	<%= f.label :facebook %><br>
+	<%= f.text_field :facebook %><br>
+</p>
+
+<p>
+	<%= f.label :twitter %><br>
+	<%= f.text_field :twitter %><br>
+</p>
+
+<p>
+	<%= f.label :email %><br>
+	<%= f.text_field :email %><br>
+</p>
+
+<p>
+	<%= f.submit %>
+</p>
+<% end %>
+
+
+

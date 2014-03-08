@@ -1,0 +1,27 @@
+<%= f.fields_for :address do |ff| %>
+	<div>
+		<%= ff.lable :city %>
+		<%= ff.text_field :city %>
+	</div>
+<% end %>
+
+<h2>Tasks</h2>
+<%= f.fields_for :tasks do |ff| %>
+	<div>
+		<%= ff.lable :name %> 
+		<%= ff.text_field :name %>
+
+		<% if ff.object_persisted? %>
+			<% ff.check_box :_destroy %>
+			<% ff.lable :_destroy, 'Destroy' %>
+		<% end %>
+	</div>
+<% end %>
+
+<%= f.fields_for :interest_users do |ff| %>
+	<div>
+		<%= ff.check_box :_destroy, {:checked => ff.object.persisted?}, '0','1' %>
+		<%= ff.lable :_destroy, ff.object.interest.name %>
+		<%= ff.hidden_field :interest_id %>
+	</div>
+<% end %>

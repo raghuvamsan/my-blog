@@ -8,6 +8,11 @@ before_action :authenticate_user!, only: [:create, :update, :new, :destroy, :edi
 	@posts = Post.all
   end
 
+  def search
+	 @posts = Post.where("title LIKE ? or content LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%" )
+	 render 'index'
+  end
+
   def show
 	@post = Post.find(params[:id])
   end
@@ -46,6 +51,8 @@ def destroy
  
   redirect_to posts_path
 end
+
+
  
   private
   

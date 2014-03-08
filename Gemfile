@@ -18,6 +18,9 @@ gem 'omniauth-twitter'
 
 gem 'oauth2'
 
+#gem 'sunspot_rails'
+#gem 'sunspot_solr'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131217110031) do
+ActiveRecord::Schema.define(version: 20140308103336) do
+
+  create_table "addresses", force: true do |t|
+    t.string   "city"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id"
@@ -32,9 +38,27 @@ ActiveRecord::Schema.define(version: 20131217110031) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
 
+  create_table "interest_users", force: true do |t|
+    t.text     "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "interests", force: true do |t|
+    t.text     "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "posts", force: true do |t|
     t.string   "title"
     t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tasks", force: true do |t|
+    t.text     "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -52,6 +76,11 @@ ActiveRecord::Schema.define(version: 20131217110031) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.integer  "phone"
+    t.date     "dob"
+    t.string   "facebook"
+    t.string   "twitter"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

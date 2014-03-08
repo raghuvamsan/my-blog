@@ -1,19 +1,31 @@
 <h1>Posts</h1>
-<% @posts.each do |p| %>
-<a href="/posts/<%=p.id %>"><%= p.title %></a><br>
-<%= link_to 'My Blog', controller: 'posts' %>
-
+<%# @posts.each do |p| %>
+<!--<a href="/posts/<%#=p.id %>"><%#= p.title %></a><br>-->
+<%# end %>
+<%= link_to 'My Blog', controller: 'posts' %><br>
 <%= link_to 'New post', new_post_path %>
+
+<br>
+  <%= form_tag("/posts/search", method: "get") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+  <% end %>
+  
+  <br><br>
+  <% if !params[:q].nil? %>
+  <p>Showing results for : <%= params[:q] %></p>
+  <% end %>
+  
+
 <table>
   <tr>
     <th>Title</th>
     <th>Text</th>
     <th colspan="3"></th>
   </tr>
- 
- <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
- 
-<% @posts.each do |post| %>
+  
+ <% @posts.each do |post| %>
   <tr>
     <td><%= post.title %></td>
     <td><%= post.content %></td>
@@ -23,4 +35,7 @@
   </tr>
 <% end %>
 </table>
-<% end %>
+
+<br><br><br><%= link_to "Sign in with Facebook", "/auth/facebook" %><br>
+  <%= link_to "Sign in with Twitter", "/auth/twitter" %><br>
+  <%= link_to "Sign in with Google", "/auth/google" %>

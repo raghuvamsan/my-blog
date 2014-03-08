@@ -1,0 +1,30 @@
+<h1>Contacts</h1>
+
+<%= link_to 'Contacts', controller: 'contacts' %><br>
+
+<table>
+  <tr>
+    <th>Name:      </th>
+    <th>Contact No:</th>
+    <th>DOB:       </th>
+    <th>Facebook:  </th>
+    <th>Twitter:   </th>
+    <th>Email:     </th>
+    <th colspan="3"></th>
+  </tr>
+  
+ <% @users.each do |c| %>
+  <tr>
+    <td><%= c.name %></td>
+    <td><%= c.phone %></td>
+    <td><%= c.dob %></td>
+    <td><%= c.facebook %></td>
+    <td><%= c.twitter %></td>
+    <td><%= c.email %></td>
+    <td><%= link_to 'New', new_contact_path(c) %></td>
+    <td><%= link_to 'Show', contact_path(c) %></td>
+    <td><%= link_to 'Edit', edit_contact_path(c) %></td>
+    <td><%= link_to 'Destroy', contact_path(c), method: :delete, data: { confirm: 'Do you want to delete this contact details?' } %></td>
+  </tr>
+<% end %>
+</table>
